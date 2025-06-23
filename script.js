@@ -12,12 +12,6 @@ const previousButton = document.getElementById("previous");
 const nextButton = document.getElementById("next");
 
 document.addEventListener("DOMContentLoaded", () => {
-    const updateImage = () => {
-        mainImage.src = images[currentIndex];
-    };
-
-    updateImage();
-
     nextButton.addEventListener("click", () => {
         currentIndex = (currentIndex + 1) % images.length;
         updateImage();
@@ -27,4 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         updateImage();
     });
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+    }, 3000);
 });
+
+const updateImage = () => {
+    mainImage.src = images[currentIndex];
+};
+
+updateImage();
