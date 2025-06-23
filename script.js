@@ -12,6 +12,8 @@ const previousButton = document.getElementById("previous");
 const nextButton = document.getElementById("next");
 
 document.addEventListener("DOMContentLoaded", () => {
+    updateImage();
+
     nextButton.addEventListener("click", () => {
         currentIndex = (currentIndex + 1) % images.length;
         updateImage();
@@ -31,5 +33,3 @@ document.addEventListener("DOMContentLoaded", () => {
 const updateImage = () => {
     mainImage.src = images[currentIndex];
 };
-
-updateImage();
