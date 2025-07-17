@@ -14,21 +14,31 @@ const nextButton = document.getElementById("next");
 document.addEventListener("DOMContentLoaded", () => {
     updateImage();
 
-    nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateImage();
-    });
+    nextButton.addEventListener("click", nextImage);
 
     previousButton.addEventListener("click", () => {
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         updateImage();
     });
 
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") {
+            nextImage();
+        } else if (e.key === "ArrowLeft") {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        }
+    });
+
     setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateImage();
+        nextImage();
     }, 3000);
 });
+
+const nextImage = () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+};
 
 const updateImage = () => {
     mainImage.src = images[currentIndex];
